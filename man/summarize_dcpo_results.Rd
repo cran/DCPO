@@ -28,13 +28,10 @@ a tibble
 }
 \examples{
 \dontrun{
-demsup <- read_csv(system.file("extdata", "all_data_demsupport.csv", package = "DCPOtools"))
-
-demsup_data <- format_dcpo(with_min_yrs(demsup, 3),
-                           scale_q = "church_21",
-                           scale_cp = 2)
-
-out1 <- dcpo(demsup_data)
+out1 <- dcpo(demsup_data,
+             chime = FALSE,
+             chains = 2,
+             iter = 150) # 2 chains/150 iterations for example purposes only; use defaults
 
 theta_results <- summarize_dcpo_results(dcpo_input = demsup_data,
                                         dcpo_output = out1,

@@ -24,8 +24,7 @@ dcpo_xvt(
 
 \item{chime}{play chime when complete?}
 
-\item{...}{arguments to be passed to \code{rstan::stan}. Defaults reset by \code{dcpo} are
-described below under details.}
+\item{...}{arguments to be passed to \code{rstan::stan}. See \code{dcpo}.}
 }
 \value{
 a stanfit object
@@ -39,22 +38,12 @@ a complete k-fold cross-validation, call it repeatedly, changing only the fold_n
 }
 \examples{
 \donttest{
-demsup <- read_csv(system.file("extdata", "all_data_demsupport.csv", package = "DCPOtools"))
-
-demsup_data <- format_dcpo(with_min_yrs(demsup, 3),
-                           scale_q = "church_21",
-                           scale_cp = 2)
-
 # Single cross-validation test with 25% test set
 demsup_xvtest_25pct <- dcpo_xvt(demsup_data,
+                           chime = FALSE,
                            number_of_folds = 4,
-                           iter = 150)
-
-# k-fold cross-validation with 10 folds (demsup_kfold_10 will be a list of stanfit objects)
-demsup_kfold_10 <- purrr::map(1:10, function(x) {
-                              dcpo_xvt(demsup_data,
-                                         fold_number = x, # number_of_folds = 10 is the default
-                                         iter = 150)
-                                         })
+                           iter = 150,
+                           chains = 2) # 2 chains/150 iterations for example only; use defaults
 }
+
 }

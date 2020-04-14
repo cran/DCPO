@@ -7,27 +7,14 @@
 #
 #' @examples
 #' \donttest{
-#' demsup <- read_csv(system.file("extdata", "all_data_demsupport.csv", package = "DCPOtools"))
-#'
-#' demsup_data <- format_dcpo(with_min_yrs(demsup, 3),
-#'                            scale_q = "church_21",
-#'                            scale_cp = 2)
-#'
 #' # Single cross-validation test with 25% test set
-#' dcpo_demsup_xvtest <- dcpo_xvt(demsup_data,
+#' demsup_xvtest_25pct <- dcpo_xvt(demsup_data,
+#'                            chime = FALSE,
 #'                            number_of_folds = 4,
-#'                            iter = 150)
+#'                            iter = 150,
+#'                            chains = 2) # 2 chains/150 iterations for example only; use defaults
 #'
-#' get_xvt_results(dcpo_demsup_xvtest)
-#'
-#' # k-fold cross-validation with 10 folds (dcpo_demsup_kfold will be a list of stanfit objects)
-#' dcpo_demsup_kfold <- purrr::map(1:10, function(x) {
-#'                               dcpo_xvt(demsup_data,
-#'                                          fold_number = x, # number_of_folds = 10 is the default
-#'                                          iter = 150)
-#'                                          })
-#'
-#' get_xvt_results(dcpo_demsup_kfold)
+#' get_xvt_results(demsup_xvtest_25pct)
 #'
 #' }
 #' @return a stanfit object
