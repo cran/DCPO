@@ -29,8 +29,8 @@ additional options; \code{stan} defaults reset by \code{dcpo} are \code{seed = 3
 \examples{
 \donttest{
 out1 <- dcpo(demsup_data,
-             chains = 2,
-             iter = 300) # 2 chains/300 iterations for example purposes only; use defaults
+             chains = 1,
+             iter = 300) # 1 chain/300 iterations for example purposes only; use defaults
 }
 
 }
